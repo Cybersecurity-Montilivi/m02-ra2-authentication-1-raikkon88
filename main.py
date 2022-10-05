@@ -21,10 +21,10 @@ def register(body):
 
 try:
     if args['register'] != None: 
-            body = json.loads(args['register'])
-            token = register(body)
-            Logger.info(f'{token}')
-            
+        body = json.loads(args['register'])
+        token = register(body)
+        Logger.info(f'{token}')
+
     elif args['login'] != None:
         Logger.info('login')
 
