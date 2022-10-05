@@ -6,11 +6,14 @@ DB_FILENAME = 'db.json'
 class Db:
 
     def __init__(self):
-        f = open(DB_FILENAME)
-        db = json.load(f)
-        f.close()
-        self.db = db
-
+        try:
+            f = open(DB_FILENAME)
+            db = json.load(f)
+            f.close()
+            self.db = db
+        except: 
+            self.db = { "users": [] }
+            
     def close(self):
         with open(DB_FILENAME, 'w') as writer:
             json.dump(self.db, writer, indent=4)
