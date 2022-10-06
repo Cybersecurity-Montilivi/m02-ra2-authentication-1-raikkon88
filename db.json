@@ -2,7 +2,32 @@
     "users": [
         {
             "email": "msanxes",
-            "token": "7Lu8Ni0NySPIY5AnCb3THJ29Q2rRTopl3KWhfTkRsADHYRm2LD-JjdkrwT1NDZOeFWLmxAAcW76Q8FenzWRv9A"
+            "token": null,
+            "hash": "un hashpwd",
+            "salt": "1234"
+        },
+        {
+            "email": "msanxes@laconxi.xixi",
+            "token": null,
+            "hash": "un hashpwd",
+            "salt": "1234"
+        },
+        {
+            "email": "msanxes@laconxi.xixa",
+            "token": null,
+            "hash": "un hashpwd",
+            "salt": "1234"
+        },
+        {
+            "email": "msanxes@laconxi.xixu",
+            "token": null,
+            "hash": "un hashpwd",
+            "salt": "1234"
+        },
+        {
+            "email": "msanxes@laconxi.xixo",
+            "token": "8ZwDPH_Bqkywfgh-wiUg2QGjgzOBsq8Hqu6o9tcb6oI9JaVAYZa8XzSsUOgKXFqY9SqUXWfs0wtywahGDK689A",
+            "salt": "136a097249230b987c37eaea7d5afd49"
         }
     ]
 }
