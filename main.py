@@ -26,7 +26,7 @@ def register(body):
     return user["token"]
 
 
-def login(body):
+def init(body):
     users = Users(db)
     users.init(body["token"], body["password"])
 
@@ -39,7 +39,7 @@ try:
 
     elif args['init'] != None:
         body = json.loads(args['init'])
-        login(body)
+        init(body)
 
     elif args['login'] != None:
         Logger.info('login')
