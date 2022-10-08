@@ -103,7 +103,43 @@ Database state:
 }
 ```
 
-> The database stays as it was because for now we have our program already 
+> The database stays as it no changes expected.
+
+## Authorize action
+
+Using the token generated in the previous step (login action) we want to authorize the user action.
+
+```
+$ python3 main.py -a '{"authorization":"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJlbWFpbCI6ICJtc2FueGVzQGluc3RpdHV0bW9udGlsaXZpLmNhdCIsICJpYXQiOiAxNjY1MjUzODA3LCAiZXhwIjogMTY2NTg1ODYwN30.ReeGs1lQbxLx992Nd3j3tMqzUudbEacfmVs_9IqvBtaRUo2eHaH5OrvYeM7lCJMghHKehILPdOrOgWv59wh4qF_qE4-1plOMuRlNzma5NnMFIN0KUy2vit2toKw4e-Na67ELtSOdGW5cLKspd3oyvJ2UxKB-2wJ5Vqppi7tJBhul4k_cmeznLsKQLbwjQUIQddJEyQfmcqkqOMNBw6LEohSPmdNjRu2LkSo_hD-GwIx6Bc7B51URckJ7TVq14S0Vs836buqGueeu1PbdaF7ggpMwzbogTfbka14CFiEZMrCm5U2jJYthVIJXFPPS9Z5mGgcwbqrbOCOR6lmQIAb-BBrPjgpO7z8M-0Wq9KEVpF4d3bn1UdDrFj1Uc1tnBvQPypv6yb4lYd53iXKbPKyG3CNvKQ2nK2ugMdXpJ6bm6n2omz4YoInq2PpNXLgzNwWpaultBmLqC95YF8kWTyMjRuDxJSlSF-nY64trH1OOSUSiVmPLxe63MwF8K2WYz1FpmMdZ1G8BvOqPhaLeRjjgJk6PLebdi_S5mCwqXYPw4mKW6mgOgrbl-evMw-XgY2UVbO2fVtlaN3SJFvOKwNlCz1Hi5SRnNxDqAB5YIJp0xTf2id3EJfBoiR15hrJsPwfUZv0u-Pk_ValTIqUiUTjAGbYeDLv7vHBE2Ef2LSHCDR4"}'
+[INFO] 2022-10-08 20:31:14,763 {'email': 'msanxes@institutmontilivi.cat', 'iat': 1665253807, 'exp': 1665858607}
+```
+
+The user is printed:
+
+```
+{
+  "email": "msanxes@institutmontilivi.cat",
+  "iat": 1665253807,
+  "exp": 1665858607
+}
+```
+
+Database state:
+
+```
+{
+    "users": [
+        {
+            "email": "msanxes@institutmontilivi.cat",
+            "token": null,
+            "salt": "e592206b326ebc740aa84379b57ec5e7",
+            "hash": "1f980bffa33ac5d8cb1e65cd95c8335e60ea3ded5a1d14552505ed0f1833572ef58aa3ec4b1cadd646da2e31f75e192adbb020cb6649540cf5230a68271d0693"
+        }
+    ]
+}
+```
+
+> The database stays as it no changes expected.
 
 # Authentication generation
 

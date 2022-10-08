@@ -2,7 +2,7 @@ import secrets
 from hashlib import pbkdf2_hmac
 from datetime import datetime, timedelta, timezone
 from jwt.utils import get_int_from_datetime
-from .crypto_utils import sign_message
+from .crypto_utils import (sign_message, verify_message)
 
 REGISTER_TOKEN_LENGTH = 64
 ITERATIONS = 500000
@@ -36,6 +36,8 @@ class Users:
 
     def login(self, email, password): 
         existing_user = self.db.get_user_by_email(email)
+        if existing_user == None:
+            raise Exception("The user does not exist")
         hash = self.generate_hash(existing_user['salt'], password)
         if hash != existing_user['hash']: 
             raise Exception("Wrong Login")
@@ -47,4 +49,9 @@ class Users:
         return sign_message(payload)
         
 
-        
+    def authorize(self, authorization):
+        try: 
+            return verify_message(authorization)
+        except:
+            raise Exception("Authorization failed") 
+

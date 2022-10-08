@@ -2,7 +2,7 @@ import json
 import argparse
 from lib.users import Users
 from lib.db import Db
-from lib.crypto_utils import (generate_pem_file, KEY_FILE)
+from lib.crypto_utils import (generate_pem_file, SIGNING_KEY_FILE)
 from log4python.Log4python import log
 from os.path import exists
 
@@ -15,13 +15,14 @@ parser.add_argument(
     '-l', '--login', help='Login action will print a bearer token, requested parameters: { username, password }', type=str, default=None)
 parser.add_argument(
     '-i', '--init', help='Init action, will print success or failed, requested parameters: { token, password }', type=str, default=None)
-# parser.add_argument('-b', '--body', help='Body requested from the action', type=str, default=None)
+parser.add_argument(
+    '-a', '--authorize', help='Authorization action, requested parameters: { authorization }', type=str, default=None)
 args = vars(parser.parse_args())
 
 Logger = log("Generator")
 
 db = Db()
-if not exists(KEY_FILE):
+if not exists(SIGNING_KEY_FILE):
     generate_pem_file()
 
 
@@ -36,8 +37,11 @@ def init(body):
 
 def login(body): 
     users = Users(db)
-    bearer_token = users.login(body["email"], body["password"])
-    return bearer_token
+    return users.login(body["email"], body["password"])
+
+def authorize(body):
+    users = Users(db)
+    return users.authorize(body['authorization'])
 
 
 try:
@@ -54,6 +58,12 @@ try:
         body = json.loads(args['login'])
         bearer_token = login(body)
         Logger.info(f'{bearer_token}')
+
+    elif args['authorize'] != None: 
+        body = json.loads(args['authorize'])
+        payload = authorize(body)
+        Logger.info(f'{payload}')
+
     else: 
         Logger.error('Should not process any request')
 

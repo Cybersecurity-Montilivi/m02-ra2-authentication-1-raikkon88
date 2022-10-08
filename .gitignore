@@ -2,4 +2,5 @@ generated.json
 logs
 __pycache__
 db.json
-pk.pem
+sk.pem
+vk.pem
