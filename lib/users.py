@@ -1,21 +1,17 @@
 import secrets
-import hashlib
+from hashlib import pbkdf2_hmac
 
 REGISTER_TOKEN_LENGTH = 64
-
+ITERATIONS = 500000
 
 class Users:
 
     def __init__(self, db):
         self.db = db
 
-    # TODO : Use hashlip.scrypt instead!!
     def generate_hash(self, salt, password, email):
-        generator = hashlib.sha3_512()
-        generator.update(salt)
-        generator.update(password)
-        generator.udpate(email)
-        return generator.hexdigest()
+        dk = pbkdf2_hmac('sha3_512', bytes(password, 'utf-8'), bytes(salt, 'utf-8')*2, ITERATIONS)
+        return dk.hex()
 
     def register(self, email):
         existing_user = self.db.get_user_by_email(email)

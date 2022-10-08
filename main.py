@@ -38,7 +38,6 @@ try:
         Logger.info(f'{token}')
 
     elif args['init'] != None:
-        print('entra aqui xo no sé xk')
         body = json.loads(args['init'])
         login(body)
 
