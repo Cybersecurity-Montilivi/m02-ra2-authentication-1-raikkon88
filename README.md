@@ -1,6 +1,11 @@
 # Authentication methods
 
-The main program, simulates an authentication process using command line arguments.
+The main program, simulates an authentication process using command line arguments. This program will generate 2 files if they are not already generated:
+
+- db.json -> Simulates the database
+- pk.pem -> A private key that will be used to generate bearer tokens.
+
+## Program help
 
 ```
 $ python3 main.py --help
@@ -68,17 +73,37 @@ Database state:
 
 # 3. Login action
 
-```
+We send the username and the password to realize the login
 
 ```
+$ python3 main.py -l '{"email":"msanxes@institutmontilivi.cat","password":"1234"}'
+[INFO] 2022-10-08 19:56:17,806 eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJlbWFpbCI6ICJtc2FueGVzQGluc3RpdHV0bW9udGlsaXZpLmNhdCIsICJpYXQiOiAxNjY1MjUxNzc3LCAiZXhwIjogMTY2NTg1NjU3N30.c4qhOTnaMehzD3Yyp-ixYNz3v6ZWIrxNfq7Ta3OCQoSjQ3yR35Vjclzi4dtMhiidH6MDgkQA1YFR11wHBKs-F0I6MD0Td6n8BsQjAD2vOxNPd9gDbupEiipS90ztm1HirmwfPoZq30GtCbou5WM6xpfyj3QmofcZq0VF5adNR42pqXQcm-TkEj_xMtIka7OPad2FyN8k5pLcK0-vmfuto-kqugorsj9_71ci1CshNCjW_5oIo5DuYWRj0LFHwRtJ8D1gW06OkfModym0Hzn_6Yi2LM40CkKrRhvhfVEkPPxoK73Tzc7B803bO62DmC9ao1URv4UnW_IAAo36veM4KeIurCUOjRRWV012tnLZ0pmUJMSrE0K63csg5GMd_0xU_JUGwwUJzFHtaO3P1u0yPRQfksldGB3bRlO3CKLToplhRWAgDt-p1DRYbwpmZJ4RUnub7AjcLe5LKLqf0440fsrMXzVsDUVSNz80McYmB94M9jzAHlZ8NFTGNCijVoF4hmxHmVyE86cgdgYXrhCBnqMeBox2XHjap3RvUErHqzGu2NVVqEi5nTObBUMdi2la0sPjmOXjsfaKZS7wZE2WtEXEv2vxArfcw0lOPUaTq-qBXExt0JG0KzoME_jCD-6nTj3dF-UjMyZiIqaXeeFBBYwIAPbIZ-qVG4WOrC7PUWU
+```
+
+In this case a token bearer is printed. This token contains some information about:
+
+- iat
+- exp
+- user email
+
+All is signed with RS256
 
 Database state:
 
 ```
-
+{
+    "users": [
+        {
+            "email": "msanxes@institutmontilivi.cat",
+            "token": null,
+            "salt": "e592206b326ebc740aa84379b57ec5e7",
+            "hash": "1f980bffa33ac5d8cb1e65cd95c8335e60ea3ded5a1d14552505ed0f1833572ef58aa3ec4b1cadd646da2e31f75e192adbb020cb6649540cf5230a68271d0693"
+        }
+    ]
+}
 ```
 
->
+> The database stays as it was because for now we have our program already 
 
 # Authentication generation
 

@@ -1,5 +1,8 @@
 import secrets
 from hashlib import pbkdf2_hmac
+from datetime import datetime, timedelta, timezone
+from jwt.utils import get_int_from_datetime
+from .crypto_utils import sign_message
 
 REGISTER_TOKEN_LENGTH = 64
 ITERATIONS = 500000
@@ -9,7 +12,7 @@ class Users:
     def __init__(self, db):
         self.db = db
 
-    def generate_hash(self, salt, password, email):
+    def generate_hash(self, salt, password):
         dk = pbkdf2_hmac('sha3_512', bytes(password, 'utf-8'), bytes(salt, 'utf-8')*2, ITERATIONS)
         return dk.hex()
 
@@ -30,3 +33,18 @@ class Users:
         existing_user['hash'] = self.generate_hash(
             existing_user["salt"], password, existing_user["email"])
         existing_user['token'] = None
+
+    def login(self, email, password): 
+        existing_user = self.db.get_user_by_email(email)
+        hash = self.generate_hash(existing_user['salt'], password)
+        if hash != existing_user['hash']: 
+            raise Exception("Wrong Login")
+        payload = {
+            "email": existing_user['email'],
+            "iat": get_int_from_datetime(datetime.now(timezone.utc)),
+            "exp": get_int_from_datetime(datetime.now(timezone.utc) + timedelta(days=7)), 
+        }
+        return sign_message(payload)
+        
+
+        
