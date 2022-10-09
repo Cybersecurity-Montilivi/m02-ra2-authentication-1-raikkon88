@@ -5,6 +5,42 @@ The main program, simulates an authentication process using command line argumen
 - db.json -> Simulates the database
 - pk.pem -> A private key that will be used to generate bearer tokens.
 
+## Api deployment
+
+To build the image: 
+
+```
+$ docker build -t flask-ws .
+```
+
+To run the container locally: 
+
+```
+docker run -d -p 5000:5000 flask-ws:latest
+``` 
+
+To create a volume
+
+```
+docker volume create flask-ws
+```
+
+Enviornment variables needed to execute the docker: 
+
+```
+VOLUME_PATH=pathtovolume
+```
+
+Example execution with volume and environment variable: 
+
+```
+docker run -d -p 5000:5000 -e "VOLUME_PATH=/data" -v flask-db:/data flask-ws:latest
+```
+
+Execution with docker compose: 
+
+
+
 ## Program help
 
 ```

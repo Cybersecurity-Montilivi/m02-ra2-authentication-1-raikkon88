@@ -1,11 +1,11 @@
 import json
 import argparse
+import os
 from lib.users import Users
 from lib.db import Db
 from lib.crypto_utils import (generate_pem_file, SIGNING_KEY_FILE)
 from log4python.Log4python import log
 from os.path import exists
-
 
 parser = argparse.ArgumentParser(
     description='Auth and names generator params', prog="generator")
@@ -20,6 +20,8 @@ parser.add_argument(
 args = vars(parser.parse_args())
 
 Logger = log("Generator")
+
+os.environ["VOLUME_PATH"] = "."
 
 db = Db()
 if not exists(SIGNING_KEY_FILE):

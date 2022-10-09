@@ -4,3 +4,4 @@ __pycache__
 db.json
 sk.pem
 vk.pem
+.flaskenv

@@ -5,9 +5,10 @@ from jwt import (
 )
 from jwt.utils import get_int_from_datetime
 from Crypto.PublicKey import RSA
+import os
 
-SIGNING_KEY_FILE = './sk.pem'
-VERIFING_KEY_FILE = './vk.pem'
+SIGNING_KEY_FILE = os.environ.get("VOLUME_PATH") + "/sk.pem"
+VERIFING_KEY_FILE = os.environ.get("VOLUME_PATH") + "/vk.pem"
 
 def save_key(file, key):
     fd = open(file, "wb")

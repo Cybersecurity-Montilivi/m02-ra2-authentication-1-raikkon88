@@ -1,9 +1,9 @@
 from genericpath import exists
 import json
 import pydash
+import os
 
-DB_FILENAME = 'db.json'
-
+DB_FILENAME = os.environ.get("VOLUME_PATH") + "/db.json"
 
 class Db:
 
