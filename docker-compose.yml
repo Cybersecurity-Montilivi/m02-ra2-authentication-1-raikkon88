@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  flask-app: 
+    image: flask-ws:latest
+    ports:
+      - 5000:5000
+    environment:
+      - VOLUME_PATH=/data
+    volumes:
+      - flask-ws:/data
+    
+volumes:
+  flask-ws:
