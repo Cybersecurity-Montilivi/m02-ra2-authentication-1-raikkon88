@@ -9,6 +9,8 @@ services:
       - VOLUME_PATH=/data
     volumes:
       - flask-ws:/data
+    deploy: 
+      replicas: 2
     
 volumes:
   flask-ws:
