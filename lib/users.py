@@ -30,8 +30,7 @@ class Users:
         if existing_user == None:
             raise Exception("The user does not exist")
         existing_user['salt'] = secrets.token_hex(16)
-        existing_user['hash'] = self.generate_hash(
-            existing_user["salt"], password, existing_user["email"])
+        existing_user['hash'] = self.generate_hash(existing_user["salt"], password)
         existing_user['token'] = None
 
     def login(self, email, password): 

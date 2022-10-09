@@ -1,3 +1,4 @@
+from genericpath import exists
 import json
 import pydash
 
@@ -7,10 +8,13 @@ DB_FILENAME = 'db.json'
 class Db:
 
     def __init__(self):
-        f = open(DB_FILENAME)
-        db = json.load(f)
-        f.close()
-        self.db = db
+        if exists(DB_FILENAME): 
+            f = open(DB_FILENAME)
+            db = json.load(f)
+            f.close()
+            self.db = db
+        else: 
+            self.db = { "users": [] }
 
     def close(self):
         with open(DB_FILENAME, 'w') as writer:
