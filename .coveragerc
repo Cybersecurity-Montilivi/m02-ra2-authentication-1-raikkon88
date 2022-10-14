@@ -1,0 +1,11 @@
+[run] 
+omit = 
+    */__pycache__/*
+    htmlcov
+    test/*
+
+source = 
+    lib
+    generator
+    ./main.py
+    ./app.py

@@ -5,3 +5,5 @@ db.json
 sk.pem
 vk.pem
 .flaskenv
+htmlcov
+.coverage
