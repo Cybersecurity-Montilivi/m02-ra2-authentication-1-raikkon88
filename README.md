@@ -5,6 +5,23 @@ The main program, simulates an authentication process using command line argumen
 - db.json -> Simulates the database
 - pk.pem -> A private key that will be used to generate bearer tokens.
 
+## TEST environment
+
+- We use unittest as test package.
+- We use coverage as test package coverage handler
+
+To run a test:
+
+```
+python3 test/test_db.py
+```
+
+To check the coverage of your application:
+
+```
+coverage report -m lib/*.py
+```
+
 ## Api deployment
 
 To build the image:
