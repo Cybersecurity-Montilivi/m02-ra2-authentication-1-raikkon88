@@ -7,3 +7,4 @@ vk.pem
 .flaskenv
 htmlcov
 .coverage
+tmp
