@@ -8,3 +8,5 @@ vk.pem
 htmlcov
 .coverage
 tmp
+.direnv
+.python-version
