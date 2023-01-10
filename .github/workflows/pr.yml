@@ -4,10 +4,9 @@ on:
     branches: 
       - actions
   workflow_dispatch: 
-  
+
 jobs: 
   Set-Up-Python:
     runs-on: ubuntu-latest
     steps: 
-      - name: "install python"
       - run: echo "Hello world"
