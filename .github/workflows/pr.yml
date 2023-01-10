@@ -9,4 +9,8 @@ jobs:
   Set-Up-Python:
     runs-on: ubuntu-latest
     steps: 
-      - run: echo "Hello world"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: 
+          python-version: '3.10'
+      - run: python test/test_db.py
